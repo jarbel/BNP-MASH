@@ -4,16 +4,16 @@
 The course will be held via visioconference until further notice. A zoom link is sent on Teams before lectures.
 
 ## Lecture 1: Bayesian nonparametrics #1
-* Slides are here.
+* Slides are [here](https://github.com/jarbel/BNP-MASH/tree/master/slides/lecture-1-2).
 * Practicals are [here](https://github.com/jarbel/BNP-MASH/tree/master/practicals) (ex1, ex2, ex3).
 
 ## Lecture 2: Bayesian nonparametrics #2
 * Practicals are [here](https://github.com/jarbel/BNP-MASH/tree/master/practicals) (ex4, ex5).
 
 ## Lecture 3: Bayesian nonparametrics #3
-* Handwritten slides are here.
-* Try to do exercises here.
-* Tentative paper list is [here]().
+* Handwritten slides are [here](https://github.com/jarbel/BNP-MASH/tree/master/slides/lecture-3).
+* Try to do exercises.
+* Tentative paper list is [here](https://github.com/jarbel/BNP-MASH/blob/master/papers-list/list.pdf).
 
 ## Lecture 4: Bayesian deep learning #1
 
