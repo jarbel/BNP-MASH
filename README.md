@@ -13,7 +13,7 @@ The course will be held via visioconference until further notice. A zoom link is
 ## Lecture 3: Bayesian nonparametrics #3
 * Handwritten slides are [here](https://github.com/jarbel/BNP-MASH/tree/master/slides/lecture-3).
 * Try to do exercises.
-* Tentative paper list is [here](https://github.com/jarbel/BNP-MASH/blob/master/papers-list/list.pdf).
+* Tentative paper list.
 
 ## Lecture 4: Bayesian deep learning #1
 
