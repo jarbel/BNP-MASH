@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage[citecolor=bleu]{hyperref}
+\usepackage{amsmath,amsthm,amssymb}
+\newtheorem{lemma}{Lemma}
+\usepackage{comment}
+\usepackage{xcolor}
+%\input{../slides/notations}
+%\usepackage[natbib=true,backend=biber,citestyle=authoryear]{biblatex}
+%\bibliography{../bib/stats,../bib/learning}
+%
+%\usepackage{tikz}
+%\usetikzlibrary{bayesnet}
+%\usetikzlibrary{arrows}
+
+\def\E{\mathbb{E}}
+\def\Prob{\mathbb{P}}
+\def\Var{\mbox{Var}}
+
+
+\title{BML: exercise sheet}
+\date{}
+
+\begin{document}
+\maketitle
+
+Stars indicate the difficulty level, from 1 to 3. One star means that everyone should be able to do it without too much effort.
+
+\section{Lecture: Bayesian nonparametrics}
+
+\subsection{Combinatorial properties of $K_n$ for Dirichlet process $(\star)$}
+\label{ex:K_n-DP}
+Let $K_n$ be the number of clusters observed when drawing $n$ observations from a Dirichlet process with concentration parameter $\alpha\in\mathbb{R}_+$.
+
+\begin{enumerate}
+	\item Show that 
+\begin{equation*}
+    \E[K_{n}] = \sum_{i=0}^{n-1} \frac{\alpha}{\alpha + i} \quad \text{and} \quad \Var(K_n) = \sum_{i=0}^{n-1} \frac{\alpha i}{(\alpha + i)^2}.
+\end{equation*}
+	\item Show the following large $n$ asymptotics for the expectation and variance of $K_n$:
+\begin{equation*}
+        \E[K_n] \sim \alpha\log n  \quad \text{and} \quad \Var(K_n)\sim \alpha\log n.
+\end{equation*}
+\end{enumerate}
+
+\subsection{Combinatorial properties of $K_n$ for Pitman--Yor process $(\star\star)$}
+\label{ex:K_n-PY}
+Let $K_n$ be the number of clusters observed when drawing $n$ observations from a Pitman--Yor process with discount parameter $\sigma\in(0,1)$ and concentration parameter $\alpha\in\mathbb{R}_+$.
+
+\begin{enumerate}
+	\item Show that 
+\begin{align*}
+    \E[K_{n+1}]= \frac{\alpha}{n+\alpha} + \frac{\sigma + \alpha +n}{n+ \alpha}\E\left[K_n\right].
+\end{align*}
+\textit{Hint:} use the PY predictive distribution and a conditional expectation to get this iterative formula from $n$ to $n+1$.  
+	\item Deduce that
+\begin{equation*}
+        \E[K_n] = \sum_{i=0}^{n-1} \frac{(\alpha +\sigma)_{i}}{(\alpha + 1)_{i}},
+\end{equation*}
+where $(x)_n = x(x+1)\ldots(x+n-1)$.
+	\item Show the following large $n$ asymptotics for the expectation of $K_n$:
+\begin{equation*}
+        \E[K_n] \sim \frac{\Gamma(\alpha+1)}{\sigma \Gamma(\alpha+\sigma)}n^\sigma.
+\end{equation*}
+\item Show that the following recursive formula holds for the variance of $K_n$:
+\begin{align}
+\Var(K_{n+1}) = \Var(K_n)\frac{n + \alpha + 2\sigma}{n+\alpha} + \frac{(\sigma\E[K_n]+ \alpha)(n - \sigma\E[K_n])}{(n+\alpha)^2}.
+\end{align} 
+\textit{Hint:} use the law of total variance.
+\item Derive again the simpler expression of expectation and variance of $K_n$ in the Dirichlet process case (by setting $\sigma = 0$ in the above formulas).
+\end{enumerate}
+
+\subsection*{More exercises on Bayesian nonparametrics}
+
+\begin{itemize}
+	\item Exercises 4.4, 4.10, 4.12, 4.13, 4.18 of 
+\end{itemize}
+
+\begin{comment}
+	
+\section{Solutions}
+
+\subsection*{Solution to exercise \ref{ex:K_n-DP}}
+
+\begin{enumerate}
+	\item The expressions are obtained by writing $K_n$ as a sum of independent Bernoulli random variables of parameter $\frac{\alpha}{\alpha+i}$, for $i=0,\ldots, n-1$, due to the DP predictive distribution.
+	\item This is obtained by factorizing by $\alpha$ and by Riemann sums of the intergal of $x\mapsto 1/x$ over interval $[1,n]$.
+\end{enumerate}
+
+\subsection*{Solution to exercise \ref{ex:K_n-PY}}
+
+\begin{enumerate}
+	\item By the P\'olya urn representation of PY (or, equivalently, its predictive distribution), we have
+
+\begin{align*}
+    \Prob(K_{n+1}=K+1 \mid K_1,\ldots,K_n=K)&= \frac{K \sigma + \alpha}{n + \alpha},\\
+    \Prob(K_{n+1}=K \mid K_1,\ldots,K_n=K)&= \frac{n - K\sigma }{n + \alpha}
+\end{align*}
+hence 
+\begin{align}\label{eq: exp_PY_rec}
+    \E[K_{n+1}]= \E[\E[K_{n+1} \mid K_1,\ldots,K_n=K]] = \frac{\alpha}{n+\alpha} + \frac{\sigma + \alpha +n}{n+ \alpha}\E\left[K\right].
+\end{align}
+\item
+Iterating yields
+\begin{equation*}
+        \E[K_n] = \sum_{i=0}^{n-1} \frac{(\alpha +\sigma)_{i}}{(\alpha + 1)_{i}}.
+\end{equation*}
+\item This is obtained by properties of the gamma function.
+\item
+Using the law of total variance we have, 
+ \begin{equation}\label{eq:var}
+\Var(K_{n+1})= \E[\Var(K_{n+1}\mid K_1,\ldots,K_n=K)] + \Var(\E[K_{n+1}\mid K_1,\ldots,K_{n}=K]).
+\end{equation}
+%Then using \eqref{eq: exp_PY_rec}, the first term could be written as,
+Using the fact that the variance of a two-point distribution with outcomes $a$ and $b$ and probabilities $p$ and $1-p$ is $p(1-p)(a-b)^2$, we can write the first term of the right-hand side of \eqref{eq:var} as
+\begin{align}\nonumber
+%\begin{aligned}
+\E[\Var(K_{n+1}\mid K_1,\ldots,K_n=K)] &= \E\left[\frac{(K\sigma+\alpha)(n-K\sigma)}{(n+\alpha)^2}\right]\\
+%=&\E\Bigg[(K + 1 - \E[K_{n+1}
+% \mid K_1,\ldots,K_n=K]))^2  \frac{K \sigma + \alpha}{n + \alpha} +\\
+% +& (K  - \E[K_{n+1}]\mid K_1,\ldots,K_n=K])^2 \frac{n - K\sigma }{n + \alpha} \Bigg] =\\
+&= \frac{\E[K_n]\sigma (n- \alpha ) + n \alpha - \sigma^2 (\E[K_n]^2 +  \Var(K_n))}{(n+\alpha)^2},\label{eq: var 1st}
+%\end{aligned}
+\end{align}
+while \eqref{eq: exp_PY_rec} provides for second term of the right-hand side of \eqref{eq:var} 
+ \begin{equation}\label{eq: var 2nd}
+\Var(\E[K_{n+1}\mid K_1,\ldots,K_{n}=K])=\left( \frac{\sigma + n + \alpha}{n+\alpha}\right)^2 \Var(K_n).
+\end{equation}
+ %
+Then combining \eqref{eq: var 1st} and \eqref{eq: var 2nd},  the following recursive formula holds
+\begin{align}\label{eq:s2-recursive}
+ \Var(K_{n+1}) &= \Var(K_n)\frac{n + \alpha + 2\sigma}{n+\alpha} + \frac{\sigma\E[K_n](n - \alpha - \sigma\E[K_n]) + n \alpha}{(n+\alpha)^2}\nonumber\\
+ &= \Var(K_n)\frac{n + \alpha + 2\sigma}{n+\alpha} + \frac{(\sigma\E[K_n]+ \alpha)(n - \sigma\E[K_n])}{(n+\alpha)^2}.
+\end{align} 
+\item 
+\end{enumerate}
+
+
+\end{comment}
+
+
+\end{document}
