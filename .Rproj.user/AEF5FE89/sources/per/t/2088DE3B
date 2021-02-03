@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1610659016216.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2161444796",
+    "id" : "2088DE3B",
+    "lastKnownWriteTime" : 1565076495,
+    "last_content_update" : 1565076495,
+    "path" : "~/Dropbox/Julyan/Teaching/cours MASH/Lecture 2021/BNP-MASH-github-folder/BNP-MASH/ex2_truncated_gem_holes.R",
+    "project_path" : "ex2_truncated_gem_holes.R",
+    "properties" : {
+        "cursorPosition" : "68,12",
+        "scrollLine" : "59"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
