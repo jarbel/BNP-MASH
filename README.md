@@ -16,6 +16,7 @@ The course will be held via visioconference until further notice. A zoom link is
 * Tentative paper list.
 
 ## Lecture 4: Bayesian deep learning #1
+* Slides are in the slides folder.
 
 ## Lecture 5: Bayesian deep learning #2
 
